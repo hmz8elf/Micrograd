@@ -27,11 +27,11 @@ class DAG :
         rankdir: TB (top to bottom graph) | LR (left to right)
         """
         assert rankdir in ['LR', 'TB']
-        nodes, edges = self.trace(self.value)
+        nodes, edges = self.trace()
         dot = Digraph(format=format, graph_attr={'rankdir': rankdir}) #, node_attr={'rankdir': 'TB'})
         
         for n in nodes:
-            dot.node(name=str(id(n)), label = "{ data %.4f | grad %.4f }" % (n.data, n.grad), shape='record')
+            dot.node(name=str(id(n)), label = "{ %s | data %.4f | grad %.4f }" % (n.label,n.data, n.grad), shape='record')
             if n._op:
                 dot.node(name=str(id(n)) + n._op, label=n._op)
                 dot.edge(str(id(n)) + n._op, str(id(n)))
