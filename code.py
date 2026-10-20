@@ -7,6 +7,7 @@ b = Value(5,label='b')
 y= a*x + b
 y.label ='y'
 
+y.backward()
 D = DAG(y)
 
 D.draw_dot()
