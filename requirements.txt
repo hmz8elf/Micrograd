@@ -1,0 +1,14 @@
+# Core project: none (micrograd is pure Python)
+
+# Training demo (train.py)
+numpy>=1.24
+scikit-learn>=1.3
+matplotlib>=3.7
+
+# Graph visualisation (DAG). Also needs the Graphviz system package:
+#   Ubuntu: sudo apt install graphviz   |   macOS: brew install graphviz
+graphviz>=0.20
+
+# Tests: gradients are checked against PyTorch
+pytest>=7.4
+torch>=2.1

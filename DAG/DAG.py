@@ -1,10 +1,6 @@
 from graphviz import Digraph
 from micrograd import Value
 
-"""
-This class is used to plot DAG 
-of reccurence of opéretions on Value
-"""
 
 class DAG :
     def __init__(self,x : Value) :
