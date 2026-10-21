@@ -1,6 +1,5 @@
 # micrograd — a tiny autograd engine, rebuilt from scratch
 
-![tests](https://github.com/<your-username>/<your-repo>/actions/workflows/tests.yml/badge.svg)
 
 A scalar-valued automatic differentiation engine (reverse-mode, like PyTorch's autograd) and a small neural-network library on top of it, written in pure Python.
 
