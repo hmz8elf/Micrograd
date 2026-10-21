@@ -1,6 +1,6 @@
 
 class Value :
-    def __init__(self,data,_children=[],label='',_op=''):
+    def __init__(self,data,_children=(),label='',_op=''):
         self.data = data
         self.label = label
         self.grad = 0
@@ -17,7 +17,7 @@ class Value :
 
     def __add__(self,other) :
         other = other if isinstance(other,Value) else Value(other)
-        out  = Value(self.data + other.data , (self,other),'+')
+        out  = Value(self.data + other.data , (self,other),_op = '+')
 
         def _backward () :
             self.grad += out.grad
@@ -28,7 +28,7 @@ class Value :
 
     def __mul__(self, other):
         other = other if isinstance(other,Value) else Value(other)
-        out = Value(self.data * other.data , (self,other),'*')
+        out = Value(self.data * other.data , (self,other),_op = '*')
 
         def _backward() :
             self.grad += other.data * out.grad
@@ -39,7 +39,7 @@ class Value :
 
     def __pow__(self,other) :
         assert isinstance(other,(int,float)) , "Erreur : only supporting int/float powers"
-        out = Value(self.data ** other ,(self,),f'**{other}')
+        out = Value(self.data ** other ,(self,),_op = f'**{other}')
 
         def _backward () :
             self.grad += (other * self.data **(other -1)) * out.grad
@@ -48,7 +48,7 @@ class Value :
         return out
 
     def relu(self):
-        out = Value(0 if self.data < 0 else self.data, (self,), 'ReLU')
+        out = Value(0 if self.data < 0 else self.data, (self,), _op = 'ReLU')
 
         def _backward():
             self.grad += (out.data > 0) * out.grad
